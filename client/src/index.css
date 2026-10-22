@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --bg-primary: #f8fafc;
-    --bg-secondary: #ffffff;
-    --border-color: #e2e8f0;
+    --bg-canvas: #e8f1fa;
+    --bg-surface: #f4f8fd;
+    --border-color: #cbdcf0;
   }
   
   body {
-    @apply bg-slate-50 text-slate-800 font-sans antialiased min-h-screen selection:bg-brand-500 selection:text-white;
+    @apply bg-[#E8F1FA] text-slate-900 font-sans antialiased min-h-screen selection:bg-brand-600 selection:text-white;
   }
 }
 
@@ -21,23 +21,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #dbeafe;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #93c5fd;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #60a5fa;
 }
 
+/* Universal Non-White Light-Theme Panel */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.95);
+  background: #f4f8fd;
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  border: 2px solid #cbdcf0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
 }
 
 .glass-panel-hover {
@@ -45,7 +46,7 @@
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(148, 163, 184, 0.5);
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-  transform: translateY(-1px);
+  border-color: #60a5fa;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(37, 99, 235, 0.05);
+  transform: translateY(-2px);
 }
