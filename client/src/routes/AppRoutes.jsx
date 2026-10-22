@@ -32,20 +32,24 @@ import SLAManagement from '../pages/admin/SLAManagement.jsx';
 import AgentLeaderboard from '../pages/admin/AgentLeaderboard.jsx';
 
 // Shared Pages
+import LandingPage from '../pages/LandingPage.jsx';
 import ProfilePage from '../pages/profile/ProfilePage.jsx';
 import NotFound from '../pages/NotFound.jsx';
 
 export const AppRoutes = () => {
   return (
     <Routes>
+      {/* Public Landing Page */}
+      <Route path="/" element={<LandingPage />} />
+
+      {/* Role-based redirect helper */}
+      <Route path="/app" element={<RoleRedirect />} />
+
       {/* Public Auth Routes */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
-
-      {/* Role Redirect Root */}
-      <Route path="/" element={<RoleRedirect />} />
 
       {/* Protected Employee Routes */}
       <Route element={<ProtectedRoute allowedRoles={['EMPLOYEE']} />}>
