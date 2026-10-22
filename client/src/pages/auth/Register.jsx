@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { User, Mail, Lock, Building, Phone, UserPlus, AlertCircle } from 'lucide-react';
 
 export const Register = () => {
+  const [searchParams] = useSearchParams();
+  const roleParam = searchParams.get('role')?.toUpperCase() || 'EMPLOYEE';
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -167,9 +170,9 @@ export const Register = () => {
       </form>
 
       <div className="mt-6 text-center text-xs text-slate-500">
-        Already have an account?{' '}
-        <Link to="/login" className="text-brand-600 hover:text-brand-700 font-semibold underline underline-offset-4">
-          Sign In
+        Already registered?{' '}
+        <Link to={`/login?role=${roleParam}`} className="text-brand-600 hover:text-brand-700 font-bold underline underline-offset-4">
+          Sign In to your account
         </Link>
       </div>
     </div>
