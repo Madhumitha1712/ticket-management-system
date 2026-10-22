@@ -4,10 +4,10 @@ import { ShieldCheck, LifeBuoy } from 'lucide-react';
 
 export const AuthLayout = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/50 text-slate-800 flex flex-col justify-center items-center p-4 sm:p-6 relative overflow-hidden selection:bg-brand-500 selection:text-white">
+    <div className="min-h-screen bg-gradient-to-br from-sky-200 via-blue-100 to-indigo-200 text-slate-800 flex flex-col justify-center items-center p-4 sm:p-6 relative overflow-hidden selection:bg-brand-500 selection:text-white">
       {/* Dynamic Background Glows */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-white/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-white/40 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="w-full max-w-md relative z-10">
         {/* Brand Header */}

@@ -58,9 +58,9 @@ export const DashboardLayout = () => {
   const navLinks = getNavLinks();
 
   return (
-    <div className="min-h-screen bg-slate-50 flex text-slate-800">
+    <div className="min-h-screen bg-slate-100/80 flex text-slate-900">
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 shrink-0 shadow-sm">
+      <aside className="hidden md:flex flex-col w-64 bg-white/95 border-r border-slate-300/80 shrink-0 shadow-xs">
         {/* Sidebar Brand Header */}
         <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-200/80">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-indigo-600 flex items-center justify-center shadow-md shadow-brand-500/20">
