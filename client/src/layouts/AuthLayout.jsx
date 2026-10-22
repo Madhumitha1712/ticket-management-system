@@ -15,11 +15,11 @@ export const AuthLayout = () => {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-600 to-indigo-600 shadow-lg shadow-brand-500/25 mb-4 border border-brand-400/30">
             <LifeBuoy className="w-8 h-8 text-white animate-pulse" />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Enterprise Desk
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+            IT Service & Ticket Management
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
-            Smart Role-Based IT Support & SLA Management Platform
+          <p className="text-slate-600 text-xs mt-1.5 font-medium">
+            Next-Gen Incident Resolution & SLA Operations Platform
           </p>
         </div>
 

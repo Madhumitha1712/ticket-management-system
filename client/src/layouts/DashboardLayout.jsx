@@ -67,7 +67,7 @@ export const DashboardLayout = () => {
             <LifeBuoy className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h2 className="font-bold text-sm tracking-tight text-slate-900">Enterprise Desk</h2>
+            <h2 className="font-extrabold text-sm tracking-tight text-slate-900">IT ServiceDesk</h2>
             <p className="text-[10px] text-brand-700 font-bold uppercase tracking-wider">{user?.role} Portal</p>
           </div>
         </div>
