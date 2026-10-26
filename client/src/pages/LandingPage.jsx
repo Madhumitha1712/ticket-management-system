@@ -264,16 +264,9 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0 space-y-3">
-              <div className="px-3 py-2 rounded-xl bg-rose-50 border border-rose-200 text-xs">
-                <span className="font-bold text-rose-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
-                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
-                  <span>admin@example.com</span>
-                  <span className="text-rose-700 font-bold">Admin123!</span>
-                </div>
-              </div>
+            <div className="p-6 pt-0">
               <button
-                onClick={() => navigate('/login?role=ADMIN&autofill=true')}
+                onClick={() => navigate('/login?role=ADMIN')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs shadow-lg shadow-rose-600/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Admin</span>
@@ -318,16 +311,9 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0 space-y-3">
-              <div className="px-3 py-2 rounded-xl bg-blue-50 border border-blue-200 text-xs">
-                <span className="font-bold text-blue-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
-                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
-                  <span>agent@example.com</span>
-                  <span className="text-blue-700 font-bold">Agent123!</span>
-                </div>
-              </div>
+            <div className="p-6 pt-0">
               <button
-                onClick={() => navigate('/login?role=AGENT&autofill=true')}
+                onClick={() => navigate('/login?role=AGENT')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-brand-700 hover:bg-brand-800 text-white font-extrabold text-xs shadow-lg shadow-brand-700/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Agent</span>
@@ -372,16 +358,9 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0 space-y-3">
-              <div className="px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-xs">
-                <span className="font-bold text-emerald-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
-                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
-                  <span>employee@example.com</span>
-                  <span className="text-emerald-700 font-bold">Employee123!</span>
-                </div>
-              </div>
+            <div className="p-6 pt-0">
               <button
-                onClick={() => navigate('/login?role=EMPLOYEE&autofill=true')}
+                onClick={() => navigate('/login?role=EMPLOYEE')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-lg shadow-emerald-600/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Employee</span>

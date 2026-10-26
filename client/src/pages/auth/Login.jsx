@@ -55,7 +55,6 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState('');
-  const [showDemoHelp, setShowDemoHelp] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -63,37 +62,14 @@ export const Login = () => {
   // Synchronize when query parameter changes
   useEffect(() => {
     const roleParam = searchParams.get('role')?.toUpperCase();
-    const shouldAutofill = searchParams.get('autofill') === 'true';
     if (ROLE_META[roleParam]) {
       setSelectedRole(roleParam);
-      if (shouldAutofill) {
-        if (roleParam === 'ADMIN') {
-          setEmail('admin@example.com');
-          setPassword('Admin123!');
-        } else if (roleParam === 'AGENT') {
-          setEmail('agent@example.com');
-          setPassword('Agent123!');
-        } else {
-          setEmail('employee@example.com');
-          setPassword('Employee123!');
-        }
-      }
     }
   }, [searchParams]);
 
   const handleRoleChange = (role) => {
     setSelectedRole(role);
-    setSearchParams({ role, autofill: 'true' });
-    if (role === 'ADMIN') {
-      setEmail('admin@example.com');
-      setPassword('Admin123!');
-    } else if (role === 'AGENT') {
-      setEmail('agent@example.com');
-      setPassword('Agent123!');
-    } else {
-      setEmail('employee@example.com');
-      setPassword('Employee123!');
-    }
+    setSearchParams({ role });
     setLocalError('');
   };
 
@@ -119,20 +95,6 @@ export const Login = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleAutofillDemo = () => {
-    if (selectedRole === 'ADMIN') {
-      setEmail('admin@example.com');
-      setPassword('Admin123!');
-    } else if (selectedRole === 'AGENT') {
-      setEmail('agent@example.com');
-      setPassword('Agent123!');
-    } else {
-      setEmail('employee@example.com');
-      setPassword('Employee123!');
-    }
-    setLocalError('');
   };
 
   const currentMeta = ROLE_META[selectedRole] || ROLE_META.EMPLOYEE;
@@ -195,25 +157,6 @@ export const Login = () => {
         </div>
         <h2 className="text-xl font-extrabold text-slate-900">{currentMeta.title}</h2>
         <p className="text-slate-500 text-xs mt-1">{currentMeta.subtitle}</p>
-      </div>
-
-      {/* Demo Credentials Box */}
-      <div className="mb-5 p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between shadow-xs">
-        <div>
-          <span className="text-[10px] uppercase font-bold text-slate-500 block">Demo {selectedRole} Login:</span>
-          <div className="flex items-center gap-2 mt-0.5 font-mono text-xs">
-            <span className="text-slate-800 font-bold">{currentMeta.defaultEmail}</span>
-            <span className="text-slate-400">/</span>
-            <span className="text-brand-700 font-bold">{selectedRole === 'ADMIN' ? 'Admin123!' : selectedRole === 'AGENT' ? 'Agent123!' : 'Employee123!'}</span>
-          </div>
-        </div>
-        <button
-          type="button"
-          onClick={handleAutofillDemo}
-          className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-xs font-bold text-slate-800 shadow-xs cursor-pointer hover:border-brand-400 transition-colors"
-        >
-          Autofill
-        </button>
       </div>
 
       {isExpired && (
@@ -294,34 +237,6 @@ export const Login = () => {
           <UserPlus className="w-3.5 h-3.5" />
           <span>Register New User Account</span>
         </Link>
-      </div>
-
-      {/* Discreet Demo Helper (for evaluation testing without forcing) */}
-      <div className="mt-5 text-center">
-        <button
-          type="button"
-          onClick={() => setShowDemoHelp(!showDemoHelp)}
-          className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 cursor-pointer"
-        >
-          <HelpCircle className="w-3 h-3" />
-          <span>{showDemoHelp ? 'Hide test credentials' : 'Need demo testing credentials?'}</span>
-        </button>
-
-        {showDemoHelp && (
-          <div className="mt-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-left text-[11px] text-slate-600 flex items-center justify-between gap-2">
-            <div>
-              <p className="font-semibold text-slate-800">Seed Demo Account ({selectedRole}):</p>
-              <p className="font-mono text-slate-500 text-[10px]">{currentMeta.defaultEmail} / {selectedRole === 'ADMIN' ? 'Admin123!' : selectedRole === 'AGENT' ? 'Agent123!' : 'Employee123!'}</p>
-            </div>
-            <button
-              type="button"
-              onClick={handleAutofillDemo}
-              className="px-2 py-1 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[10px] font-semibold text-slate-700 cursor-pointer"
-            >
-              Autofill
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
