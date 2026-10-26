@@ -1,4 +1,4 @@
-import api from './api.js';
+import api, { getFileUrl } from './api.js';
 import { authService } from './authService.js';
 import { ticketService } from './ticketService.js';
 
@@ -119,4 +119,4 @@ export const userService = {
   },
 };
 
-export { api, authService, ticketService };
+export { api, authService, ticketService, getFileUrl };

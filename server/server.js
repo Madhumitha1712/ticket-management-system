@@ -33,10 +33,25 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // CORS configuration
-const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
+const rawClientUrl = process.env.CLIENT_URL || '';
+const allowedOrigins = rawClientUrl
+  ? rawClientUrl.split(',').map((u) => u.trim().replace(/\/$/, ''))
+  : ['http://localhost:5173'];
+
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/$/, '');
+      if (
+        allowedOrigins.includes('*') ||
+        allowedOrigins.includes(cleanOrigin) ||
+        process.env.NODE_ENV !== 'production'
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -50,6 +65,12 @@ if (process.env.NODE_ENV === 'development') {
 
 // Serve uploaded static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Serve client static build files in production if dist exists
+const clientDistPath = path.resolve(__dirname, '../client/dist');
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(clientDistPath));
+}
 
 // Health Check Route
 app.get('/api/health', (req, res) => {
@@ -71,13 +92,27 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
-// 404 Route handler for undefined endpoints
-app.use('*', (req, res) => {
+// 404 Route handler for undefined API endpoints
+app.all('/api/*', (req, res) => {
   res.status(404).json({
     success: false,
     message: `API endpoint '${req.originalUrl}' not found on this server`,
   });
 });
+
+// In production, fallback non-API routes to frontend React SPA
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  app.use('*', (req, res) => {
+    res.status(404).json({
+      success: false,
+      message: `API endpoint '${req.originalUrl}' not found on this server`,
+    });
+  });
+}
 
 // Centralized Global Error Handler
 app.use(errorHandler);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ticketService } from '../../services/ticketService.js';
-import { feedbackService } from '../../services/index.js';
+import { feedbackService, getFileUrl } from '../../services/index.js';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { StatusBadge, PriorityBadge } from '../../components/common/Badge.jsx';
 import { SLAIndicator } from '../../components/tickets/SLAIndicator.jsx';
@@ -200,7 +200,7 @@ export const EmployeeTicketDetail = () => {
               {ticket.attachments.map((att, idx) => (
                 <a
                   key={idx}
-                  href={att.fileUrl}
+                  href={getFileUrl(att.fileUrl)}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-xs text-brand-700 hover:text-brand-800 transition-colors shadow-xs"
@@ -364,7 +364,7 @@ export const EmployeeTicketDetail = () => {
                       {c.attachments.map((att, i) => (
                         <a
                           key={i}
-                          href={att.fileUrl}
+                          href={getFileUrl(att.fileUrl)}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] text-brand-700 shadow-xs hover:border-brand-300"

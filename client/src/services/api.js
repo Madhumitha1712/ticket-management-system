@@ -1,11 +1,21 @@
 import axios from 'axios';
 
+const rawBaseUrl = import.meta.env.VITE_API_URL || '';
+export const cleanBaseUrl = rawBaseUrl.replace(/\/$/, '');
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: cleanBaseUrl ? `${cleanBaseUrl}/api` : '/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+export const getFileUrl = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return cleanBaseUrl ? `${cleanBaseUrl}${cleanPath}` : cleanPath;
+};
 
 // Request interceptor to attach JWT Bearer token
 api.interceptors.request.use(
