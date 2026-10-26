@@ -211,49 +211,6 @@ export const LandingPage = () => {
             <span>Register New User</span>
           </Link>
         </div>
-
-        {/* Creative Live Incident Simulation Widget (WOW Factor!) */}
-        <div className="mt-12 max-w-2xl mx-auto p-5 rounded-3xl bg-white/90 border-2 border-blue-200 shadow-xl backdrop-blur-md text-left">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-3">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-[11px] font-black uppercase tracking-wider text-slate-800">
-                Live Incident Telemetry Simulator
-              </span>
-            </div>
-            <span className="text-[10px] font-mono font-bold bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full border border-blue-200">
-              #TKT-2084
-            </span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="px-2 py-0.5 rounded text-[10px] font-black bg-rose-100 text-rose-700 border border-rose-200">
-                  CRITICAL
-                </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-                  IT Infrastructure
-                </span>
-              </div>
-              <h4 className="text-xs sm:text-sm font-extrabold text-slate-900">
-                Primary Database Cluster High Latency Alert (&gt; 350ms)
-              </h4>
-              <p className="text-[11px] text-slate-500 font-medium">Assigned: Senior DevOps Engineering Lead</p>
-            </div>
-
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 shrink-0 sm:text-right">
-              <div className="text-[10px] font-bold uppercase text-slate-500 flex items-center gap-1 sm:justify-end">
-                <Clock className="w-3 h-3 text-amber-500" />
-                <span>SLA Resolution Target</span>
-              </div>
-              <div className="text-base font-black text-slate-900 font-mono">00:14:32</div>
-              <div className="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden mt-1 sm:ml-auto">
-                <div className="w-3/4 h-full bg-gradient-to-r from-emerald-500 to-amber-500 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Role Selection Cards Section */}
@@ -307,9 +264,16 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0">
+            <div className="p-6 pt-0 space-y-3">
+              <div className="px-3 py-2 rounded-xl bg-rose-50 border border-rose-200 text-xs">
+                <span className="font-bold text-rose-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
+                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
+                  <span>admin@example.com</span>
+                  <span className="text-rose-700 font-bold">Admin123!</span>
+                </div>
+              </div>
               <button
-                onClick={() => navigate('/login?role=ADMIN')}
+                onClick={() => navigate('/login?role=ADMIN&autofill=true')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs shadow-lg shadow-rose-600/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Admin</span>
@@ -354,9 +318,16 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0">
+            <div className="p-6 pt-0 space-y-3">
+              <div className="px-3 py-2 rounded-xl bg-blue-50 border border-blue-200 text-xs">
+                <span className="font-bold text-blue-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
+                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
+                  <span>agent@example.com</span>
+                  <span className="text-blue-700 font-bold">Agent123!</span>
+                </div>
+              </div>
               <button
-                onClick={() => navigate('/login?role=AGENT')}
+                onClick={() => navigate('/login?role=AGENT&autofill=true')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-brand-700 hover:bg-brand-800 text-white font-extrabold text-xs shadow-lg shadow-brand-700/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Agent</span>
@@ -401,9 +372,16 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            <div className="p-6 pt-0">
+            <div className="p-6 pt-0 space-y-3">
+              <div className="px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-xs">
+                <span className="font-bold text-emerald-900 block mb-0.5 text-[11px] uppercase tracking-wide">Demo Credentials:</span>
+                <div className="font-mono text-[11px] text-slate-700 flex items-center justify-between">
+                  <span>employee@example.com</span>
+                  <span className="text-emerald-700 font-bold">Employee123!</span>
+                </div>
+              </div>
               <button
-                onClick={() => navigate('/login?role=EMPLOYEE')}
+                onClick={() => navigate('/login?role=EMPLOYEE&autofill=true')}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-lg shadow-emerald-600/25 hover:scale-[1.01] transition-all cursor-pointer"
               >
                 <span>Login as Employee</span>

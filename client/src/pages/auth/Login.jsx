@@ -63,14 +63,37 @@ export const Login = () => {
   // Synchronize when query parameter changes
   useEffect(() => {
     const roleParam = searchParams.get('role')?.toUpperCase();
+    const shouldAutofill = searchParams.get('autofill') === 'true';
     if (ROLE_META[roleParam]) {
       setSelectedRole(roleParam);
+      if (shouldAutofill) {
+        if (roleParam === 'ADMIN') {
+          setEmail('admin@example.com');
+          setPassword('Admin123!');
+        } else if (roleParam === 'AGENT') {
+          setEmail('agent@example.com');
+          setPassword('Agent123!');
+        } else {
+          setEmail('employee@example.com');
+          setPassword('Employee123!');
+        }
+      }
     }
   }, [searchParams]);
 
   const handleRoleChange = (role) => {
     setSelectedRole(role);
-    setSearchParams({ role });
+    setSearchParams({ role, autofill: 'true' });
+    if (role === 'ADMIN') {
+      setEmail('admin@example.com');
+      setPassword('Admin123!');
+    } else if (role === 'AGENT') {
+      setEmail('agent@example.com');
+      setPassword('Agent123!');
+    } else {
+      setEmail('employee@example.com');
+      setPassword('Employee123!');
+    }
     setLocalError('');
   };
 
@@ -172,6 +195,25 @@ export const Login = () => {
         </div>
         <h2 className="text-xl font-extrabold text-slate-900">{currentMeta.title}</h2>
         <p className="text-slate-500 text-xs mt-1">{currentMeta.subtitle}</p>
+      </div>
+
+      {/* Demo Credentials Box */}
+      <div className="mb-5 p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between shadow-xs">
+        <div>
+          <span className="text-[10px] uppercase font-bold text-slate-500 block">Demo {selectedRole} Login:</span>
+          <div className="flex items-center gap-2 mt-0.5 font-mono text-xs">
+            <span className="text-slate-800 font-bold">{currentMeta.defaultEmail}</span>
+            <span className="text-slate-400">/</span>
+            <span className="text-brand-700 font-bold">{selectedRole === 'ADMIN' ? 'Admin123!' : selectedRole === 'AGENT' ? 'Agent123!' : 'Employee123!'}</span>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={handleAutofillDemo}
+          className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-xs font-bold text-slate-800 shadow-xs cursor-pointer hover:border-brand-400 transition-colors"
+        >
+          Autofill
+        </button>
       </div>
 
       {isExpired && (
